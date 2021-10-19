@@ -19,4 +19,6 @@
  
  - Add a static block for the header top bar. Identifier - **header_top_bar** and it will display on top of the header on every page.
  - Add static block for banner slider. Identifier - **home_banner_slider** and it will display on the home page.
+
+### Note: Please read document file for static block content https://github.com/csvikram44/encora-luma-child/blob/master/Document.pdf
  
