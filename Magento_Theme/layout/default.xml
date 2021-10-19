@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.wrapper">
+            <container name="header.top.container" htmlClass="header top-bar" htmlTag="div" before="-">
+                <block class="Magento\Cms\Block\Block" name="header.top.bar">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">header_top_bar</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <referenceContainer name="header.container">
+            <container name="header.bottom.container" htmlClass="header-bottom" htmlTag="div" after="header-wrapper" />
+        </referenceContainer>
+
+        <referenceContainer name="header-wrapper">
+            <container name="header.middle.container" htmlClass="header-middle" htmlTag="div">
+                <container name="header.middle.container.left" htmlClass="header-middle__left" htmlTag="div" />
+                <container name="header.middle.container.right" htmlClass="header-middle__right" htmlTag="div">
+                    <container name="header.custom.links" htmlClass="header-custom-links" htmlTag="div">
+                        <block class="Magento\Customer\Block\Account\Link" name="my-account-custom-link">
+                            <arguments>
+                                <argument name="label" xsi:type="string" translate="true">My Account</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Framework\View\Element\Html\Link" name="header.wishlist.link">
+                            <arguments>
+                                <argument name="label" xsi:type="string" translate="true">My Wish List</argument>
+                                <argument name="path" xsi:type="string" translate="true">wishlist</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Framework\View\Element\Html\Link" name="header.checkout.link">
+                            <arguments>
+                                <argument name="label" xsi:type="string" translate="true">Checkout</argument>
+                                <argument name="path" xsi:type="string" translate="true">checkout</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Customer\Block\Account\AuthorizationLink" name="authorization-link-custom-login" template="Magento_Customer::account/link/authorization.phtml" />
+                    </container>
+                </container>
+            </container>
+        </referenceContainer>
+
+        <move element="minicart" destination="header.custom.links" after="header.checkout.link"/>
+
+        <!--<move element="checkout.top.link" destination="top.links" after="wish-list-link" />-->
+
+        <move element="logo" destination="header.middle.container.left" before="-" />
+        <move element="currency" destination="header.middle.container.left" after="logo" />
+        <move element="store_language" destination="header.middle.container.left" after="currency" />
+
+        <!--<move element="top.links" destination="header.middle.container.right" />-->
+
+        <move element="navigation.sections" destination="header.bottom.container" />
+        <move element="top.search" destination="header.bottom.container" after="navigation.sections" />
+        <!--<referenceContainer name="header.panel.wrapper" remove="true" />-->
+    </body>
+</page>
